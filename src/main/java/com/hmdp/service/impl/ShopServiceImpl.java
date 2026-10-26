@@ -33,28 +33,25 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
 
     @Override
     public Result queryById(Long id) {
-        //1.
-        String key = RedisConstants.CACHE_SHOP_KEY +id;
-        //1.从redis查询商铺缓存
-
-        String shopJson = stringRedisTemplate.opsForValue().get(key);
-        //2.判断是否存在
+        //1.redis查询缓存
+        String key = RedisConstants.CACHE_SHOP_KEY + id;
+        String shopJson  = stringRedisTemplate.opsForValue().get(key);
         if(StrUtil.isNotBlank(shopJson)){
-            //3.存在，直接返回
-            Shop shop = JSONUtil.toBean(shopJson,Shop.class);
+            Shop shop = JSONUtil.toBean(shopJson, Shop.class);
             return Result.ok(shop);
         }
-        //4.不存在，根据id查询数据库
+        //不存在，根据id查询数据库
         Shop shop = getById(id);
-        //5.数据库不存在，返回错误
         if(shop==null){
             return Result.fail("店铺不存在");
+        }else{
+            //将查询结果写入redis
+            stringRedisTemplate.opsForValue().set(key,JSONUtil.toJsonStr(shop));
+            return Result.ok(shop);
         }
-        //6.存在，将查询结果写入redis
-        stringRedisTemplate.opsForValue().set(key,JSONUtil.toJsonStr(shop));
 
-        //7.返回数据
-        return Result.ok(shop);
+
+
     }
 
 
