@@ -1,17 +1,17 @@
 server:
   port: 8081
 spring:
+  profiles:
+    active: local # 激活本地配置（application-local.yaml，已被gitignore，不入库）
   application:
     name: dainping
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://127.0.0.1:3306/dainping?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
-    password: 123456
   redis:
     host: 192.168.64.130
     port: 6379
-    password: 222543
     lettuce:
       pool:
         max-active: 10
