@@ -1,0 +1,18 @@
+request_id: hmdp-debug-20261028
+entry_type: full_pipeline
+current_stage: 3
+output_docx_path: "F:\\develop\\idea_workspace\\hm-dianping\\output\\hmdp-debug-20261028\\stage3\\黑马点评调试复盘-20261028.docx"
+output_docx_user_specified: false
+stage_1:
+  status: completed
+  executor: doc-writer
+  output: output/hmdp-debug-20261028/stage1/final_draft.md
+stage_2:
+  status: completed
+  executor: doc-formatter
+  output: output/hmdp-debug-20261028/stage2/formatted-黑马点评调试复盘.html
+  intermediate_dir: output/hmdp-debug-20261028/stage2/intermediate/
+stage_3:
+  status: completed
+  executor: doc-converter
+consistency_check: passed
