@@ -57,6 +57,13 @@
             <artifactId>hutool-all</artifactId>
             <version>5.7.17</version>
         </dependency>
+        <!-- AOP 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+        <!-- AOP 依赖 -->
+
     </dependencies>
 
     <build>
